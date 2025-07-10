@@ -1,13 +1,38 @@
 package az.edu.turing.todomanager.controller;
 
+import az.edu.turing.todomanager.model.Task;
 import az.edu.turing.todomanager.service.TaskService;
+import az.edu.turing.todomanager.service.impl.TaskServiceImpl;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.swing.text.html.Option;
+import java.util.List;
+import java.util.Optional;
+
 @RestController
 @RequiredArgsConstructor
 public class TaskController {
 
     private final TaskService taskService;
+    private final TaskServiceImpl taskServiceImpl;
+
+    @GetMapping
+    public List<Task> getAllTasks(){
+        return taskService.getAllTasks();
+
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Task> getTaskById(@PathVariable Long id) {
+        return taskService.getTaskById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
 
 
 

@@ -1,7 +1,15 @@
 package az.edu.turing.todomanager.service;
 
-import org.springframework.stereotype.Service;
 
-@Service
-public class TaskService {
+import az.edu.turing.todomanager.model.Task;
+
+import java.util.List;
+import java.util.Optional;
+
+public interface TaskService {
+    List<Task> getAllTasks();
+    Object createTask(Task task);
+    Optional<Task> getTaskById(long taskId);
+    Task updateTask(Long taskId,Task updatedTask);
+
 }

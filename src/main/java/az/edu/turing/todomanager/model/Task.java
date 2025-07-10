@@ -24,6 +24,7 @@ public class Task {
 
     private LocalDate dueDate;
 
+    @Enumerated(EnumType.STRING)
     private TaskStatus status;
 
 
