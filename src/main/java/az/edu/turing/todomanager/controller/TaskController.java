@@ -6,9 +6,7 @@ import az.edu.turing.todomanager.service.impl.TaskServiceImpl;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.swing.text.html.Option;
 import java.util.List;
@@ -34,6 +32,11 @@ public class TaskController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+@PostMapping
+    public Task createTask(@RequestBody Task task){
+        return taskService.createTask(task);
+
+}
 
 
 }
