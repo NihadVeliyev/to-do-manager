@@ -42,6 +42,11 @@ public class TaskServiceImpl implements TaskService{
                 .orElseThrow(() -> new RuntimeException("Task not found with id: " + taskId));
     }
 
+    @Override
+    public void deleteTask(Long taskId) {
+        taskRepository.deleteById(taskId);
+
+    }
 
 
 }
