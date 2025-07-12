@@ -1,26 +1,25 @@
 package az.edu.turing.todomanager.controller;
-
+import az.edu.turing.todomanager.dto.TaskRequest;
 import az.edu.turing.todomanager.model.Task;
 import az.edu.turing.todomanager.service.TaskService;
-import az.edu.turing.todomanager.service.impl.TaskServiceImpl;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import javax.swing.text.html.Option;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
-@RequiredArgsConstructor
 public class TaskController {
 
     private final TaskService taskService;
-    private final TaskServiceImpl taskServiceImpl;
+
+    public TaskController(TaskService taskService) {
+        this.taskService = taskService;
+    }
+
 
     @GetMapping
     public List<Task> getAllTasks(){
+        System.out.println("salam nihat sik ustunde otur dur");
         return taskService.getAllTasks();
 
     }
@@ -32,8 +31,8 @@ public class TaskController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-@PostMapping
-    public Task createTask(@RequestBody Task task){
+    @PostMapping
+    public Task createTask(@RequestBody TaskRequest task){
         return taskService.createTask(task);
 
 }

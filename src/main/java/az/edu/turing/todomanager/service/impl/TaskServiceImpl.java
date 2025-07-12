@@ -1,10 +1,13 @@
 package az.edu.turing.todomanager.service.impl;
 
+import az.edu.turing.todomanager.Enums.TaskStatus;
+import az.edu.turing.todomanager.dto.TaskRequest;
 import az.edu.turing.todomanager.model.Task;
 import az.edu.turing.todomanager.repository.TaskRepository;
 import az.edu.turing.todomanager.service.TaskService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,9 +23,13 @@ public class TaskServiceImpl implements TaskService{
     }
 
     @Override
-    public Task createTask(Task task) {
+    public Task createTask(TaskRequest task) {
+        Task task1 = new Task();
+        task1.setName(task.getName());
+        task1.setDueDate(task.getDueDate());
+        task1.setStatus(TaskStatus.TODO);
 
-        return taskRepository.save(task);
+        return taskRepository.save(task1);
     }
 
     @Override
