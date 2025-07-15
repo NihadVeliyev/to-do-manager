@@ -19,7 +19,6 @@ public class TaskController {
 
     @GetMapping
     public List<Task> getAllTasks(){
-        System.out.println("salam nihat sik ustunde otur dur");
         return taskService.getAllTasks();
 
     }
